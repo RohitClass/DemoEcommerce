@@ -31,6 +31,12 @@ Route::group(["prefix" => "admin"], function () {
 
         Route::get('/', [LoginController::class, 'index'])->name('admin.login');
         Route::post('login', [LoginController::class, 'loginSubmit'])->name('login.loginSubmit');
+        Route::get('forget', [LoginController::class, 'forgetPassword'])->name('forget.forgetPassword');
+        Route::post('forget', [LoginController::class, 'forgetSubmit'])->name('forget.forgetSubmit');
+        Route::post('update', [LoginController::class, 'updatePassword'])->name('update.updatePassword');
+
+
+
     });
 
     // <---------after login routes--------->

@@ -34,11 +34,16 @@
                 <div class="col-lg-6 col-md-10">
                     <div class="card card-default mb-0">
                         <div class="card-header pb-0">
-                            @if(session('error'))
-                            <div class=" col-12 alert alert-danger" role="alert">
-                                {{session('error')}}
-                              </div>
-                        @endif
+                            @if (session('error'))
+                                <div class=" col-12 alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class=" col-12 alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">
                                 <a class="w-auto pl-0" href="/index.html">
                                     {{-- <img src="images/logo.png" alt="Mono"> --}}
@@ -48,9 +53,9 @@
                         </div>
                         <div class="card-body px-5 pb-5 pt-0">
 
-                            <h4 class="text-dark mb-6 text-center">Login</h4>
+                            <h4 class="text-dark mb-6 text-center">Admin Login</h4>
 
-                            <form action="{{route('login.loginSubmit')}}" method="POST">
+                            <form action="{{ route('login.loginSubmit') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-md-12 mb-4">
@@ -66,19 +71,18 @@
                                         <div class="d-flex justify-content-between mb-3">
 
                                             <div class="custom-control custom-checkbox mr-3 mb-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                <label class="custom-control-label" for="customCheck2">Remember
-                                                    me</label>
+
                                             </div>
 
-                                            <a class="text-color" href="#"> Forgot password? </a>
+                                            <a class="text-color" href="{{ route('forget.forgetPassword') }}"> Forgot
+                                                password? </a>
 
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-pill mb-4">Login</button>
 
-                                        <p>Don't have an account yet ?
-                                            <a class="text-blue" href="sign-up.html">login</a>
+                                        <p>only for admin login here !
+                                            <a class="text-blue" href="/admin">login</a>
                                         </p>
                                     </div>
                                 </div>
@@ -91,10 +95,11 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var successMessage = document.querySelector('.alert-danger');
+            var successMessage = document.querySelector('.alert-success');
             if (successMessage) {
-                setTimeout(function () {
+                setTimeout(function() {
                     successMessage.style.display = 'none';
                 }, 3000);
             }
